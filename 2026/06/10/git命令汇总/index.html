@@ -1,0 +1,233 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Git命令汇总 | 日积月累成大神的个人博客</title><meta name="author" content="日积月累成大神"><meta name="copyright" content="日积月累成大神"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Git命令汇总1. 历史查看与调试1.1. git shortlog：提交汇总，按作者分组统计提交次数与提交说 明 1.2. git blame：追溯作者，逐行显示代码最后修改人和提交信息 1.3. git bisect：二分查找，通过二分法快速定位引入 bug 的提交 1.4. git reflog：引用日志，记录所有 HEAD 变动用于误操作恢复 1.5. git whatchanged：查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git命令汇总">
+<meta property="og:url" content="http://example.com/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/index.html">
+<meta property="og:site_name" content="日积月累成大神的个人博客">
+<meta property="og:description" content="Git命令汇总1. 历史查看与调试1.1. git shortlog：提交汇总，按作者分组统计提交次数与提交说 明 1.2. git blame：追溯作者，逐行显示代码最后修改人和提交信息 1.3. git bisect：二分查找，通过二分法快速定位引入 bug 的提交 1.4. git reflog：引用日志，记录所有 HEAD 变动用于误操作恢复 1.5. git whatchanged：查看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-06-10T07:27:52.501Z">
+<meta property="article:modified_time" content="2026-06-10T07:41:45.280Z">
+<meta property="article:author" content="日积月累成大神">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Git命令汇总",
+  "url": "http://example.com/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/",
+  "image": "http://example.com/img/butterfly-icon.png",
+  "datePublished": "2026-06-10T07:27:52.501Z",
+  "dateModified": "2026-06-10T07:41:45.280Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "日积月累成大神",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5-b1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Git命令汇总',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">日积月累成大神的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Git命令汇总</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Git命令汇总</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-10T07:27:52.501Z" title="发表于 2026-06-10 15:27:52">2026-06-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-10T07:41:45.280Z" title="更新于 2026-06-10 15:41:45">2026-06-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Git命令汇总"><a href="#Git命令汇总" class="headerlink" title="Git命令汇总"></a>Git命令汇总</h1><h2 id="1-历史查看与调试"><a href="#1-历史查看与调试" class="headerlink" title="1. 历史查看与调试"></a>1. 历史查看与调试</h2><p>1.1. git shortlog：提交汇总，按作者分组统计提交次数与提交说 明</p>
+<p>1.2. git blame：追溯作者，逐行显示代码最后修改人和提交信息</p>
+<p>1.3. git bisect：二分查找，通过二分法快速定位引入 bug 的提交</p>
+<p>1.4. git reflog：引用日志，记录所有 HEAD 变动用于误操作恢复</p>
+<p>1.5. git whatchanged：查看变更，显示每次提交涉及的具体文件 改动</p>
+<p>1.6. git rev-list：提交列表，按条件筛选并列出匹配的提交记录</p>
+<h2 id="2-补丁与归档工具"><a href="#2-补丁与归档工具" class="headerlink" title="2. 补丁与归档工具"></a>2. 补丁与归档工具</h2><p>2.1. git format-patch：生成补丁，将提交导出为可邮件发送的补 丁文件</p>
+<p>2.2. git apply：应用补丁，将 diff 补丁文件中的改动应用到工作 区</p>
+<p>2.3. git am：应用补丁，将邮件格式的补丁文件应用到仓库</p>
+<p>2.4. git archive：打包归档，将指定提交导出为 tar 或 zip 压缩包</p>
+<p>2.5. git bundle：打包传输，将分支打包为单个文件方便离线传递</p>
+<h2 id="3-仓库维护与性能优化"><a href="#3-仓库维护与性能优化" class="headerlink" title="3. 仓库维护与性能优化"></a>3. 仓库维护与性能优化</h2><p>3.1. git gc：垃圾回收，清理冗余对象压缩仓库优化存储空间</p>
+<p>3.2. git maintenance：维护任务，定期执行 gc 等优化保持仓库 性能健康</p>
+<p>3.3. git count-objects：对象统计，统计仓库中松散对象和包文 件的数量</p>
+<p>3.4. git repack：重新打包，将松散对象压缩为高效的包文件</p>
+<p>3.5. git prune：修剪对象，删除不再被任何引用指向的孤立对象</p>
+<p>3.6. git fsck：仓库检查，扫描对象数据库并报告损坏或丢失</p>
+<p>3.7. git sparse-checkout：稀疏检出，仅拉取指定目录大幅节省 大仓库空间</p>
+<h2 id="4-高级对象与引用操作"><a href="#4-高级对象与引用操作" class="headerlink" title="4. 高级对象与引用操作"></a>4. 高级对象与引用操作</h2><p>4.1. git rev-parse：解析引用，将分支名或标签转换为完整 SHA 哈希值</p>
+<p>4.2. git symbolic-ref：符号引用，读取或修改 HEAD 等符号引用 的指向目标</p>
+<p>4.3. git cat-file：查看对象，查看 Git 内部对象的类型、大小和内 容</p>
+<p>4.4. git replace：对象替换，用新对象替换历史记录中的旧对象</p>
+<p>4.5. git notes：添加注释，为已有提交附加额外说明不影响 SHA</p>
+<p>4.6. git update-index：强制更新，手动修改暂存区文件状态或跳 过检测</p>
+<p>4.7. git filter-branch：重写历史，批量修改提交历史如删除大文 件等</p>
+<p>4.8. git verify-commit：验证签名，校验 GPG 签名提交的完整性 与真实性</p>
+<p>4.9. git verify-tag：验证标签，校验标签附带的 GPG 签名是否有 效</p>
+<p>4.10. git describe：版本描述，基于最近的标签生成人类可读版 本号</p>
+<h2 id="5-图形化与调试工具"><a href="#5-图形化与调试工具" class="headerlink" title="5. 图形化与调试工具"></a>5. 图形化与调试工具</h2><p>5.1. git gui：图形界面，启动 Git 自带的可视化操作客户端</p>
+<p>5.2. gitk：图形历史，启动 Tcl&#x2F;Tk 图形界面可视化查看提交</p>
+<p>5.3. git instaweb：即时网页，启动 gitweb 服务器图形化浏览仓 库历史</p>
+<p>5.4. git difftool：差异对比，使用配置的外部工具查看文件差异</p>
+<p>5.5. git merge-file：文件合并，对单个文件执行三路合并生成结 果</p>
+<p>5.6. git diagnose：诊断工具，分析仓库状态并输出详细的诊断日 志</p>
+<p>5.7. git bugreport：Bug 报告，收集系统和配置信息生成标准化 报告</p>
+<h2 id="6-其他高级功能"><a href="#6-其他高级功能" class="headerlink" title="6. 其他高级功能"></a>6. 其他高级功能</h2><p>6.1. git grep：仓库搜索，在版本库所有文件中快速查找内容</p>
+<p>6.2. git worktree：工作树管理，在同一仓库创建多个并行工作目 录</p>
+<p>6.3. git submodule：子模块管理，嵌套引用外部仓库作为项目依 赖</p>
+<p>6.4. git credential：凭证管理，配置密码缓存或调用外部凭证助 手</p>
+<p>6.5. git for-each-ref：遍历引用，对所有分支和标签执行指定格 式化输出</p>
+<h2 id="7-基础配置与仓库初始化"><a href="#7-基础配置与仓库初始化" class="headerlink" title="7. 基础配置与仓库初始化"></a>7. 基础配置与仓库初始化</h2><p>7.1. git config：配置管理，设置用户名、邮箱及仓库行为参数</p>
+<p>7.2. git init：初始化仓库，在当前目录创建一个新的 Git 仓库</p>
+<p>7.3. git clone：克隆仓库，从远程地址复制完整项目到本地</p>
+<h2 id="8-文件与提交操作"><a href="#8-文件与提交操作" class="headerlink" title="8. 文件与提交操作"></a>8. 文件与提交操作</h2><p>8.1. git add：添加文件，将工作区修改放入暂存区准备提交</p>
+<p>8.2. git commit：提交更改，将暂存区内容保存到本地版本库</p>
+<p>8.3. git status：查看状态，显示工作区与暂存区的文件变更情况</p>
+<p>8.4. git diff：查看差异，比较工作区、暂存区或版本间改动</p>
+<p>8.5. git log：查看历史，显示提交记录、作者与时间等详情</p>
+<p>8.6. git show：查看详情，显示某次提交的改动内容与元数据</p>
+<p>8.7. git rm：删除文件，从工作区和暂存区同时移除指定文件</p>
+<p>8.8. git mv：重命名文件，移动或改名同时保留版本追踪记录</p>
+<p>8.9. git clean：清理文件，删除工作区中未被 Git 跟踪的文件</p>
+<p>8.10. git restore：恢复文件，撤销工作区或暂存区中的文件修改</p>
+<p>8.11. git reset：回退版本，撤销提交或将暂存区文件移回工作区</p>
+<p>8.12. git stash：暂存更改，临时保存未提交的修改以便切换分支</p>
+<p>8.13. git revert：撤销提交，生成新提交来反向抵消指定改动</p>
+<h2 id="9-分支与合并管理"><a href="#9-分支与合并管理" class="headerlink" title="9. 分支与合并管理"></a>9. 分支与合并管理</h2><p>9.1. git branch：分支管理，查看、创建或删除代码开发分支</p>
+<p>9.2. git checkout &#x2F; switch：切换分支，切换到指定分支进行代码 开发</p>
+<p>9.3. git merge：合并分支，将指定分支的代码合并到当前分支</p>
+<p>9.4. git mergetool：冲突解决，调用外部可视化工具处理合并冲 突</p>
+<p>9.5. git rerere：冲突复用，自动记录合并冲突的解决方案供后续 复用</p>
+<p>9.6. git range-diff：范围对比，比较两个提交范围之间的差异变 化</p>
+<p>9.7. git cherry-pick：挑选提交，将指定提交的改动应用到当前分 支</p>
+<p>9.8. git rebase：变基重写，将当前分支提交移到目标分支顶端</p>
+<p>9.9. git show-branch：分支拓扑，可视化展示多个分支的提交关 系图</p>
+<h2 id="10-远程仓库交互"><a href="#10-远程仓库交互" class="headerlink" title="10. 远程仓库交互"></a>10. 远程仓库交互</h2><p>10.1. git remote：远程管理，查看、添加或删除远程仓库地址配 置</p>
+<p>10.2. git fetch：获取更新，从远程仓库下载最新提交但不合并</p>
+<p>10.3. git pull：拉取更新，从远程仓库获取最新代码并合并</p>
+<p>10.4. git push：推送代码，将本地提交上传到远程仓库分支</p>
+<p>10.5. git ls-remote：查看远程，列出远程仓库的所有引用与分支 信息</p>
+<p>10.6. git request-pull：请求合并，生成拉取摘要要发送给项目维 护者</p>
+<p>10.7. git send-email：发送补丁，通过 SMTP 将补丁文件以邮件 形式发送</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">日积月累成大神</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/">http://example.com/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">日积月累成大神的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/06/10/%E5%86%85%E5%AD%98%E6%B8%85%E7%90%86%E5%92%8C%E4%BC%98%E5%8C%96/" title="电脑越用越卡？8款Windows内存定时清理优化神器全盘点，老电脑满血复活"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">电脑越用越卡？8款Windows内存定时清理优化神器全盘点，老电脑满血复活</div></div><div class="info-2"><div class="info-item-1">              电脑越用越卡？8款Windows内存定时清理优化神器全盘点，老电脑满血复活  电脑长时间开机、多软件后台运行后，内存占用飙升、反应迟钝、游戏掉帧，是很多Windows用户的通病。手动关闭进程治标不治本，一款好用的内存定时清理&amp;优化工具，就能自动释放冗余内存、维持系统流畅。今天整理8款实测好用的内存工具，涵盖开源轻量、一键傻瓜、专业分析、全能优化等不同类型，附官网地址、优缺点详解，新手、进阶玩家都能找到适配款！   1. Mem Reduct 🔗 官网：https://mem-reduct.com/ 工具简介 全球高人气开源轻量内存清理工具，安装包体积小巧，提供便携版，兼容Windows7至Win11全系统。依托Windows原生底层API，可深度清理8大内存区域，清理效果出众，是硬核玩家的常用选择。 ✅ 优点  体积小巧，自身资源占用极低，支持后台静默运行 支持定时、内存阈值两种自动清理模式，自定义选项丰富 实时监控内存状态，托盘图标可直观区分内存负载情况 开源免费且带有安全签名，全程无广告、无捆绑程序 支持命令行操作，可搭配脚本实现自动化运...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">日积月累成大神</div><div class="author-info-description">技术笔记、踩坑记录、效率工具、宝藏网站分享</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB"><span class="toc-number">1.</span> <span class="toc-text">Git命令汇总</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8E%86%E5%8F%B2%E6%9F%A5%E7%9C%8B%E4%B8%8E%E8%B0%83%E8%AF%95"><span class="toc-number">1.1.</span> <span class="toc-text">1. 历史查看与调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%A1%A5%E4%B8%81%E4%B8%8E%E5%BD%92%E6%A1%A3%E5%B7%A5%E5%85%B7"><span class="toc-number">1.2.</span> <span class="toc-text">2. 补丁与归档工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BB%93%E5%BA%93%E7%BB%B4%E6%8A%A4%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">1.3.</span> <span class="toc-text">3. 仓库维护与性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%AB%98%E7%BA%A7%E5%AF%B9%E8%B1%A1%E4%B8%8E%E5%BC%95%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">1.4.</span> <span class="toc-text">4. 高级对象与引用操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%9B%BE%E5%BD%A2%E5%8C%96%E4%B8%8E%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.5.</span> <span class="toc-text">5. 图形化与调试工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%85%B6%E4%BB%96%E9%AB%98%E7%BA%A7%E5%8A%9F%E8%83%BD"><span class="toc-number">1.6.</span> <span class="toc-text">6. 其他高级功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BB%93%E5%BA%93%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.7.</span> <span class="toc-text">7. 基础配置与仓库初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E6%96%87%E4%BB%B6%E4%B8%8E%E6%8F%90%E4%BA%A4%E6%93%8D%E4%BD%9C"><span class="toc-number">1.8.</span> <span class="toc-text">8. 文件与提交操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%88%86%E6%94%AF%E4%B8%8E%E5%90%88%E5%B9%B6%E7%AE%A1%E7%90%86"><span class="toc-number">1.9.</span> <span class="toc-text">9. 分支与合并管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BA%A4%E4%BA%92"><span class="toc-number">1.10.</span> <span class="toc-text">10. 远程仓库交互</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/" title="Git命令汇总">Git命令汇总</a><time datetime="2026-06-10T07:27:52.501Z" title="发表于 2026-06-10 15:27:52">2026-06-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/10/%E5%86%85%E5%AD%98%E6%B8%85%E7%90%86%E5%92%8C%E4%BC%98%E5%8C%96/" title="电脑越用越卡？8款Windows内存定时清理优化神器全盘点，老电脑满血复活">电脑越用越卡？8款Windows内存定时清理优化神器全盘点，老电脑满血复活</a><time datetime="2026-06-10T03:31:26.243Z" title="发表于 2026-06-10 11:31:26">2026-06-10</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By 日积月累成大神</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5-b1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.5-b1"></script><script src="/js/main.js?v=5.5.5-b1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
