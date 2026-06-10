@@ -145,6 +145,136 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2026/06/10/git%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2026-06-10 15:27:52 / Modified: 15:27:23" itemprop="dateCreated datePublished" datetime="2026-06-10T15:27:52+08:00">2026-06-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Git命令汇总"><a href="#Git命令汇总" class="headerlink" title="Git命令汇总"></a>Git命令汇总</h1><h2 id="1-历史查看与调试"><a href="#1-历史查看与调试" class="headerlink" title="1. 历史查看与调试"></a>1. 历史查看与调试</h2><p>1.1. git shortlog：提交汇总，按作者分组统计提交次数与提交说 明</p>
+<p>1.2. git blame：追溯作者，逐行显示代码最后修改人和提交信息</p>
+<p>1.3. git bisect：二分查找，通过二分法快速定位引入 bug 的提交</p>
+<p>1.4. git reflog：引用日志，记录所有 HEAD 变动用于误操作恢复</p>
+<p>1.5. git whatchanged：查看变更，显示每次提交涉及的具体文件 改动</p>
+<p>1.6. git rev-list：提交列表，按条件筛选并列出匹配的提交记录</p>
+<h2 id="2-补丁与归档工具"><a href="#2-补丁与归档工具" class="headerlink" title="2. 补丁与归档工具"></a>2. 补丁与归档工具</h2><p>2.1. git format-patch：生成补丁，将提交导出为可邮件发送的补 丁文件</p>
+<p>2.2. git apply：应用补丁，将 diff 补丁文件中的改动应用到工作 区</p>
+<p>2.3. git am：应用补丁，将邮件格式的补丁文件应用到仓库</p>
+<p>2.4. git archive：打包归档，将指定提交导出为 tar 或 zip 压缩包</p>
+<p>2.5. git bundle：打包传输，将分支打包为单个文件方便离线传递</p>
+<h2 id="3-仓库维护与性能优化"><a href="#3-仓库维护与性能优化" class="headerlink" title="3. 仓库维护与性能优化"></a>3. 仓库维护与性能优化</h2><p>3.1. git gc：垃圾回收，清理冗余对象压缩仓库优化存储空间</p>
+<p>3.2. git maintenance：维护任务，定期执行 gc 等优化保持仓库 性能健康</p>
+<p>3.3. git count-objects：对象统计，统计仓库中松散对象和包文 件的数量</p>
+<p>3.4. git repack：重新打包，将松散对象压缩为高效的包文件</p>
+<p>3.5. git prune：修剪对象，删除不再被任何引用指向的孤立对象</p>
+<p>3.6. git fsck：仓库检查，扫描对象数据库并报告损坏或丢失</p>
+<p>3.7. git sparse-checkout：稀疏检出，仅拉取指定目录大幅节省 大仓库空间</p>
+<h2 id="4-高级对象与引用操作"><a href="#4-高级对象与引用操作" class="headerlink" title="4. 高级对象与引用操作"></a>4. 高级对象与引用操作</h2><p>4.1. git rev-parse：解析引用，将分支名或标签转换为完整 SHA 哈希值</p>
+<p>4.2. git symbolic-ref：符号引用，读取或修改 HEAD 等符号引用 的指向目标</p>
+<p>4.3. git cat-file：查看对象，查看 Git 内部对象的类型、大小和内 容</p>
+<p>4.4. git replace：对象替换，用新对象替换历史记录中的旧对象</p>
+<p>4.5. git notes：添加注释，为已有提交附加额外说明不影响 SHA</p>
+<p>4.6. git update-index：强制更新，手动修改暂存区文件状态或跳 过检测</p>
+<p>4.7. git filter-branch：重写历史，批量修改提交历史如删除大文 件等</p>
+<p>4.8. git verify-commit：验证签名，校验 GPG 签名提交的完整性 与真实性</p>
+<p>4.9. git verify-tag：验证标签，校验标签附带的 GPG 签名是否有 效</p>
+<p>4.10. git describe：版本描述，基于最近的标签生成人类可读版 本号</p>
+<h2 id="5-图形化与调试工具"><a href="#5-图形化与调试工具" class="headerlink" title="5. 图形化与调试工具"></a>5. 图形化与调试工具</h2><p>5.1. git gui：图形界面，启动 Git 自带的可视化操作客户端</p>
+<p>5.2. gitk：图形历史，启动 Tcl&#x2F;Tk 图形界面可视化查看提交</p>
+<p>5.3. git instaweb：即时网页，启动 gitweb 服务器图形化浏览仓 库历史</p>
+<p>5.4. git difftool：差异对比，使用配置的外部工具查看文件差异</p>
+<p>5.5. git merge-file：文件合并，对单个文件执行三路合并生成结 果</p>
+<p>5.6. git diagnose：诊断工具，分析仓库状态并输出详细的诊断日 志</p>
+<p>5.7. git bugreport：Bug 报告，收集系统和配置信息生成标准化 报告</p>
+<h2 id="6-其他高级功能"><a href="#6-其他高级功能" class="headerlink" title="6. 其他高级功能"></a>6. 其他高级功能</h2><p>6.1. git grep：仓库搜索，在版本库所有文件中快速查找内容</p>
+<p>6.2. git worktree：工作树管理，在同一仓库创建多个并行工作目 录</p>
+<p>6.3. git submodule：子模块管理，嵌套引用外部仓库作为项目依 赖</p>
+<p>6.4. git credential：凭证管理，配置密码缓存或调用外部凭证助 手</p>
+<p>6.5. git for-each-ref：遍历引用，对所有分支和标签执行指定格 式化输出</p>
+<h2 id="7-基础配置与仓库初始化"><a href="#7-基础配置与仓库初始化" class="headerlink" title="7. 基础配置与仓库初始化"></a>7. 基础配置与仓库初始化</h2><p>7.1. git config：配置管理，设置用户名、邮箱及仓库行为参数</p>
+<p>7.2. git init：初始化仓库，在当前目录创建一个新的 Git 仓库</p>
+<p>7.3. git clone：克隆仓库，从远程地址复制完整项目到本地</p>
+<h2 id="8-文件与提交操作"><a href="#8-文件与提交操作" class="headerlink" title="8. 文件与提交操作"></a>8. 文件与提交操作</h2><p>8.1. git add：添加文件，将工作区修改放入暂存区准备提交</p>
+<p>8.2. git commit：提交更改，将暂存区内容保存到本地版本库</p>
+<p>8.3. git status：查看状态，显示工作区与暂存区的文件变更情况</p>
+<p>8.4. git diff：查看差异，比较工作区、暂存区或版本间改动</p>
+<p>8.5. git log：查看历史，显示提交记录、作者与时间等详情</p>
+<p>8.6. git show：查看详情，显示某次提交的改动内容与元数据</p>
+<p>8.7. git rm：删除文件，从工作区和暂存区同时移除指定文件</p>
+<p>8.8. git mv：重命名文件，移动或改名同时保留版本追踪记录</p>
+<p>8.9. git clean：清理文件，删除工作区中未被 Git 跟踪的文件</p>
+<p>8.10. git restore：恢复文件，撤销工作区或暂存区中的文件修改</p>
+<p>8.11. git reset：回退版本，撤销提交或将暂存区文件移回工作区</p>
+<p>8.12. git stash：暂存更改，临时保存未提交的修改以便切换分支</p>
+<p>8.13. git revert：撤销提交，生成新提交来反向抵消指定改动</p>
+<h2 id="9-分支与合并管理"><a href="#9-分支与合并管理" class="headerlink" title="9. 分支与合并管理"></a>9. 分支与合并管理</h2><p>9.1. git branch：分支管理，查看、创建或删除代码开发分支</p>
+<p>9.2. git checkout &#x2F; switch：切换分支，切换到指定分支进行代码 开发</p>
+<p>9.3. git merge：合并分支，将指定分支的代码合并到当前分支</p>
+<p>9.4. git mergetool：冲突解决，调用外部可视化工具处理合并冲 突</p>
+<p>9.5. git rerere：冲突复用，自动记录合并冲突的解决方案供后续 复用</p>
+<p>9.6. git range-diff：范围对比，比较两个提交范围之间的差异变 化</p>
+<p>9.7. git cherry-pick：挑选提交，将指定提交的改动应用到当前分 支</p>
+<p>9.8. git rebase：变基重写，将当前分支提交移到目标分支顶端</p>
+<p>9.9. git show-branch：分支拓扑，可视化展示多个分支的提交关 系图</p>
+<h2 id="10-远程仓库交互"><a href="#10-远程仓库交互" class="headerlink" title="10. 远程仓库交互"></a>10. 远程仓库交互</h2><p>10.1. git remote：远程管理，查看、添加或删除远程仓库地址配 置</p>
+<p>10.2. git fetch：获取更新，从远程仓库下载最新提交但不合并</p>
+<p>10.3. git pull：拉取更新，从远程仓库获取最新代码并合并</p>
+<p>10.4. git push：推送代码，将本地提交上传到远程仓库分支</p>
+<p>10.5. git ls-remote：查看远程，列出远程仓库的所有引用与分支 信息</p>
+<p>10.6. git request-pull：请求合并，生成拉取摘要要发送给项目维 护者</p>
+<p>10.7. git send-email：发送补丁，通过 SMTP 将补丁文件以邮件 形式发送</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2026/06/10/%E5%86%85%E5%AD%98%E6%B8%85%E7%90%86%E5%92%8C%E4%BC%98%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -430,7 +560,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
