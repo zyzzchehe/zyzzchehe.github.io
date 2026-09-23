@@ -1,0 +1,124 @@
+#login-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+#login-overlay.hidden {
+  display: none;
+}
+
+.login-card {
+  width: 340px;
+  max-width: 90vw;
+  padding: 36px 32px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  text-align: center;
+  animation: login-fade 0.3s ease;
+}
+
+@keyframes login-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+
+.login-card p {
+  margin: 0 0 22px;
+  font-size: 13px;
+  color: #999;
+}
+
+.login-card input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.login-card input + input {
+  margin-top: 10px;
+}
+
+.login-card input:focus {
+  border-color: #49b1f5;
+}
+
+.login-card .login-btn {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: #49b1f5;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-card .login-btn:hover {
+  background: #337ec9;
+}
+
+.login-card .login-error {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #e74c3c;
+  visibility: hidden;
+}
+
+.login-card .login-error.show {
+  visibility: visible;
+}
+
+.login-card.shake {
+  animation: login-shake 0.4s ease;
+}
+
+@keyframes login-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(8px);
+  }
+  60% {
+    transform: translateX(-6px);
+  }
+  80% {
+    transform: translateX(6px);
+  }
+}
