@@ -1,0 +1,23 @@
+.tool-card[data-color] h3::before {
+  content: "";
+  display: inline-block !important;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  vertical-align: middle !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  background-color: var(--thzh-dot, #49b1f5);
+}
+
+.thzh-msg {
+  min-height: 18px;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #4caf50;
+}
+
+.thzh-msg.is-error {
+  color: #e74c3c;
+}
